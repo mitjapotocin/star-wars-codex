@@ -1,0 +1,16 @@
+@font-face {
+  font-family: StarJedi;
+  src: url("/assets/fonts/Starjedi.ttf") format("truetype");
+}
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+
+h1, h2, h3 {
+  font-size: 50px;
+  font-family: StarJedi, arial, verdana, sans-serif;
+  color: var(--yellow);
+}
+
+html {
+  font-family: 'Audiowide', cursive;
+}
