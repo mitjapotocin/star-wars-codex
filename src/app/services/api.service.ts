@@ -14,26 +14,22 @@ export class ApiService {
     private _http: HttpClient
   ) { }
 
-  getCharacterList({
-    url = API_URL + '/people/',
-    query
-  }: GetCharacterListParams = {}): Observable<CharacterListI> {
-    let _url: URL = new URL(url);
+  getCharacterList({ query, page }: GetCharacterListParams = {}): Observable<CharacterListI> {
+    let url: URL = new URL(API_URL + '/people/');
 
-    if (query) {
-      _url.searchParams.append('search', query);
-    }
+    if (query) { url.searchParams.append('search', query); }
+    if (page) { url.searchParams.append('page', page.toString()); }
 
-    return this._http.get(_url.href, { responseType: 'json' }) as Observable<CharacterListI>;
+    return this.get({url: url.href}) as Observable<CharacterListI>;
   }
 
   get({ url }: GetListParams): Observable<any> {
-    return this._http.get(url, { responseType: 'json' }) as Observable<any>;
+    return this._http.get(url, { responseType: 'json' });
   }
 }
 
 export interface GetCharacterListParams {
-  url?: string;
+  page?: number;
   query?: string;
 }
 export interface GetListParams {
