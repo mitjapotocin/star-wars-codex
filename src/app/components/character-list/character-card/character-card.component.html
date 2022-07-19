@@ -1,3 +1,5 @@
-<mat-card>
-  {{ character?.name }}
-</mat-card>
+<a [routerLink]="['/characters/mitja']" [state]="character">
+  <mat-card>
+    {{ character?.name }}
+  </mat-card>
+</a>

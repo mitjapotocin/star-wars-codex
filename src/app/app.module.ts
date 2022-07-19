@@ -5,6 +5,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -14,6 +15,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { CharacterListModule } from './components/character-list/character-list.module';
+import { DetailViewComponent } from './components/detail-view/detail-view.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { CharacterListModule } from './components/character-list/character-list.
     NavComponent,
     HomeComponent,
     SearchInputComponent,
+    DetailViewComponent,
   ],
   imports: [
     CharacterListModule,
@@ -30,6 +33,7 @@ import { CharacterListModule } from './components/character-list/character-list.
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatSnackBarModule,
     FormsModule,
     MatPaginatorModule,
     AppRoutingModule

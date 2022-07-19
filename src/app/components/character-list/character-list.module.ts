@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CharacterCardComponent } from './character-card/character-card.component';
 import { CharacterListComponent } from './character-list.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 const components = [
   CharacterListComponent,
@@ -19,7 +20,8 @@ const components = [
     MatCardModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   exports: [
     ...components

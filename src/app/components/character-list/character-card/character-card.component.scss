@@ -1,3 +1,17 @@
-mat-card + mat-card{
+mat-card {
+  transition: transform 0.3s;
+
+  + mat-card {
   margin-top: 20px;
+}
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    mat-card {
+      transform: scale(1.02);
+    } 
+  }
 }
