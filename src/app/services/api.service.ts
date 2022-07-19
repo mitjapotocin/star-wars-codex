@@ -5,14 +5,6 @@ import { CharacterListI } from '../types/character-type';
 
 const API_URL = 'https://swapi.dev/api';
 
-export interface GetCharacterListParams {
-  url?: string;
-  query?: string;
-}
-export interface GetListParams {
-  url: string;
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -39,3 +31,12 @@ export class ApiService {
     return this._http.get(url, { responseType: 'json' }) as Observable<any>;
   }
 }
+
+export interface GetCharacterListParams {
+  url?: string;
+  query?: string;
+}
+export interface GetListParams {
+  url: string;
+}
+

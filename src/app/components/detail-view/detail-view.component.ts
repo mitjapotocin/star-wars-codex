@@ -1,23 +1,26 @@
 import { PlanetI } from './../../types/planet-type';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { tap, take, mergeMap, map, catchError } from 'rxjs/operators';
 import { of, forkJoin, Observable } from 'rxjs';
-
 import { ActivatedRoute, Router } from '@angular/router';
-import { CharacterI, CharacterListI } from 'src/app/types/character-type';
 import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { CharacterI, CharacterListI } from 'src/app/types/character-type';
 import { ApiService } from 'src/app/services/api.service';
 import { FilmI } from 'src/app/types/film-type';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Animations } from 'src/app/animations/animations';
+import { UserPreferencesService } from 'src/app/services/user-preferences.service';
+
 @Component({
   selector: 'app-detail-view',
   templateUrl: './detail-view.component.html',
   styleUrls: ['./detail-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: Animations.listAnimationEnter
 })
 export class DetailViewComponent implements OnInit {
-  character?: CharacterI;
+  character: CharacterI;
   dataToShow: string[] = [
     'height',
     'mass',
@@ -28,18 +31,27 @@ export class DetailViewComponent implements OnInit {
   ];
   films: string = '';
   homeworld: string = '';
+  isFavorite?: boolean;
   loading: boolean = false;
+  private favorites: string[] = [];
   
   constructor(
     private _location: Location,
     private _route: ActivatedRoute,
     private _router: Router,
     private _apiService: ApiService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _userPreferencesService: UserPreferencesService,
+    private _changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.getCharacter();
+    this.getFavorites();
+  }
+  
+  private getFavorites() {
+    this.favorites = this._userPreferencesService.getFavorites();
   }
 
   private getCharacter() {
@@ -53,12 +65,21 @@ export class DetailViewComponent implements OnInit {
         mergeMap((hasData: boolean) => hasData ? of(state) : this.fetchCharacter()),
         tap((character: CharacterI) => { this.character = character; }),
         mergeMap((character: CharacterI) => this.fetchFilmsAndHomeWorld(character)),
-        tap(() => { this.loading = false; }),
+        tap(() => { this.afterDataRetrieved(); }),
         catchError(() => this.handleError())
       )
       .subscribe();
   }
 
+
+  private afterDataRetrieved() {
+    this.loading = false;
+    if (this.character) {
+      this.isFavorite = this.favorites.includes(this.character.name)
+    }
+
+    this._changeDetectorRef.detectChanges();
+  }
 
   private handleError() {
     return of(undefined)
@@ -111,6 +132,15 @@ export class DetailViewComponent implements OnInit {
     return !!(object && typeof object === 'object')
       ? (object as any)[prop]
       : false;
+  }
+
+  toggleFavorite() {
+    this.favorites = this.isFavorite
+      ? this.favorites.filter(c => c !== this.character.name)
+      : [...this.favorites, this.character.name];
+    
+    this.isFavorite = !this.isFavorite;
+    this._userPreferencesService.setFavorites(this.favorites);
   }
 
   getProp(prop: string): string {

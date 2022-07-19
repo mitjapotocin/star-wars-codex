@@ -1,5 +1,5 @@
 import { tap, distinctUntilChanged, switchMap, debounceTime, map, catchError, take } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ApiService, GetCharacterListParams } from '../../services/api.service';
 import { CharacterI, CharacterListI } from 'src/app/types/character-type';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -9,7 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
@@ -30,7 +31,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private _apiService: ApiService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _changeDetectorRef: ChangeDetectorRef
+
   ) { }
 
   ngOnInit() {
@@ -94,6 +97,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.characters = data.results;
     this.totalCount = data.count;
     this.pages = { next: data.next, previous: data.previous };
+
+    this._changeDetectorRef.detectChanges();
   }
 
   private setStateBeforeFetch({ url }: GetCharacterListParams) {
@@ -102,5 +107,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (!url) {
       this.paginator?.firstPage();
     }
+
+    this._changeDetectorRef.detectChanges();
   }
 }

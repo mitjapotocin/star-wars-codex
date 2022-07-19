@@ -1,9 +1,20 @@
 mat-card {
   transition: transform 0.3s;
+  display: flex;
+  align-items: center;
 
-  + mat-card {
-  margin-top: 20px;
+  +mat-card {
+    margin-top: 20px;
+  }
 }
+
+button {
+  margin-left: auto;
+
+  &.mat-primary {
+    background-color: #000;
+    opacity: 0.4;
+  }
 }
 
 a {
@@ -12,6 +23,6 @@ a {
   &:hover {
     mat-card {
       transform: scale(1.02);
-    } 
+    }
   }
 }

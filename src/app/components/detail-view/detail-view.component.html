@@ -1,7 +1,18 @@
 <div class="main-wrapper">
   <ng-template [ngIf]="character && !loading">
 
-    <h2>{{ character?.name?.toLowerCase() }}</h2>
+    <h2>
+      <span>
+        {{ character?.name?.toLowerCase() }}
+      </span>
+      <button 
+        (click)="toggleFavorite()"
+        mat-mini-fab 
+        [color]="isFavorite ? 'warn' : undefined"
+        aria-label="Favorite">
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </h2>
 
     <div class="properties" @listAnimationEnter>
       <ng-template ngFor [ngForOf]="dataToShow" let-prop>

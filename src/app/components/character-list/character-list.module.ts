@@ -6,6 +6,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CharacterCardComponent } from './character-card/character-card.component';
 import { CharacterListComponent } from './character-list.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 const components = [
   CharacterListComponent,
@@ -20,6 +22,8 @@ const components = [
     MatCardModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
     BrowserModule,
     AppRoutingModule
   ],
