@@ -1,4 +1,4 @@
-import { tap, distinctUntilChanged, switchMap, debounceTime, map, catchError, take, filter, mergeMap } from 'rxjs/operators';
+import { tap, distinctUntilChanged, switchMap, debounceTime, catchError, take, filter } from 'rxjs/operators';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ApiService, GetCharacterListParams } from '../../services/api.service';
 import { CharacterI, CharacterListI } from 'src/app/types/character-type';
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this._router.events
       .pipe(
         filter((event: Event) => event instanceof NavigationEnd),
-        mergeMap(() => this.getStateFromQueryParams()),
+        switchMap(() => this.getStateFromQueryParams())
       )
   }
 }
