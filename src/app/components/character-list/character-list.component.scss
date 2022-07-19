@@ -1,0 +1,21 @@
+.character-list {
+  position: relative;
+  min-height: 72px;
+}
+
+mat-spinner {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+app-character-card {
+  display: block;
+  transition: opacity .3s;
+
+  & + app-character-card {
+    margin-top: 20px;
+  }
+}

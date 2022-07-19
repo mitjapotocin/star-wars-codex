@@ -1,0 +1,15 @@
+.list-header {
+  display: flex;
+  margin-bottom: 36px;
+
+  mat-paginator {
+    margin-left: auto;
+  }
+}
+
+h2 {
+  font-size: 28px;
+  color: #000;
+  display: inline-block;
+  margin-bottom: 56px;
+}

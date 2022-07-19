@@ -1,1 +1,27 @@
-<p>home works!</p>
+<div class="main-wrapper">
+  
+  <h2>{{ title }}</h2>
+
+  <div class="list-header">
+    <app-search-input
+      [value]="''"
+      (onChange)="onInputChange($event)">
+    </app-search-input>
+
+    <mat-paginator
+      #paginator
+      [length]="totalCount"
+      [hidePageSize]="true"
+      [pageSize]="10"
+      [disabled]="loading"
+      (page)="onPageChange($event)"
+      aria-label="Select page">
+    </mat-paginator>
+
+  </div>
+
+  <app-character-list
+    [loading]="loading"
+    [characters]="characters">
+  </app-character-list>
+</div>
