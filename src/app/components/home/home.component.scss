@@ -1,8 +1,22 @@
+@import '~src/scss/mixins';
+
 .list-header {
   display: flex;
   margin-bottom: 36px;
+  
+  @include for-mobile {
+    display: block;
+    margin-bottom: 12px;
+  }
 
   mat-paginator {
     margin-left: auto;
+  }
+}
+
+app-search-input {
+  @include for-mobile {
+    display: block;
+    margin-bottom: 28px;
   }
 }
