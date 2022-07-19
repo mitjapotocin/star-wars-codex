@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CharacterI } from 'src/app/types/people-type';
+import { CharacterI } from 'src/app/types/character-type';
 
 @Component({
   selector: 'app-character-card',
@@ -9,7 +9,14 @@ import { CharacterI } from 'src/app/types/people-type';
 export class CharacterCardComponent {
   @Input() character?: CharacterI;
 
-  onInit() {
-    console.log(this.character)
+  characterNameDashCase(): string {
+    if (!this.character?.name) {
+      return ''
+    }
+
+    return this.character.name
+      .split(' ')
+      .map((word) => word.charAt(0).toLowerCase() + word.slice(1))
+      .join('-');
   }
 }

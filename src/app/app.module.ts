@@ -16,17 +16,19 @@ import { HomeComponent } from './components/home/home.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { CharacterListModule } from './components/character-list/character-list.module';
 import { DetailViewComponent } from './components/detail-view/detail-view.component';
+import { DetailComponent } from './components/detail-view/detail/detail.component';
+import { DetailViewModule } from './components/detail-view/detail-view.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    SearchInputComponent,
-    DetailViewComponent,
+    SearchInputComponent
   ],
   imports: [
     CharacterListModule,
+    DetailViewModule,
     HttpClientModule,
     BrowserModule,
     MatCardModule,

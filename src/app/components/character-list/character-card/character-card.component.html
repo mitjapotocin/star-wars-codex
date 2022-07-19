@@ -1,4 +1,4 @@
-<a [routerLink]="['/characters/mitja']" [state]="character">
+<a [routerLink]="['/characters/' + characterNameDashCase()]" [state]="character">
   <mat-card>
     {{ character?.name }}
   </mat-card>

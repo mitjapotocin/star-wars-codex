@@ -1,7 +1,8 @@
 <div class="character-list">
   <mat-spinner 
     *ngIf="loading"
-    [diameter]="42"></mat-spinner>
+    [diameter]="42">
+  </mat-spinner>
   
   <div [@listAnimation]="characters.length">
     <app-character-card

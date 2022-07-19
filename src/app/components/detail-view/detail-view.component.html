@@ -1,1 +1,32 @@
-<p>detail-view works!</p>
+<div class="main-wrapper">
+  <ng-template [ngIf]="character && !loading">
+
+    <h2>{{ character?.name?.toLowerCase() }}</h2>
+
+    <div class="properties" @listAnimationEnter>
+      <ng-template ngFor [ngForOf]="dataToShow" let-prop>
+        <app-detail *ngIf="hasProp(prop)" 
+          [description]="prop"
+          [value]="getProp(prop)">
+        </app-detail>
+      </ng-template>
+
+      <app-detail *ngIf="homeworld" 
+        [description]="'homeworld'"
+        [value]="homeworld">
+      </app-detail>
+
+      <app-detail *ngIf="films" 
+        [description]="'films'"
+        [value]="films">
+      </app-detail>
+    
+    </div>
+  </ng-template>
+  
+  <mat-spinner 
+    *ngIf="loading"
+    [diameter]="42">
+  </mat-spinner>
+
+</div>

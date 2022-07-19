@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CharacterListI } from '../types/people-type';
+import { CharacterListI } from '../types/character-type';
 
 const API_URL = 'https://swapi.dev/api';
 
 export interface GetCharacterListParams {
   url?: string;
   query?: string;
+}
+export interface GetListParams {
+  url: string;
 }
 
 @Injectable({
@@ -30,5 +33,9 @@ export class ApiService {
     }
 
     return this._http.get(_url.href, { responseType: 'json' }) as Observable<CharacterListI>;
+  }
+
+  get({ url }: GetListParams): Observable<any> {
+    return this._http.get(url, { responseType: 'json' }) as Observable<any>;
   }
 }

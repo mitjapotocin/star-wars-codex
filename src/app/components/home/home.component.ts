@@ -1,7 +1,7 @@
 import { tap, distinctUntilChanged, switchMap, debounceTime, map, catchError, take } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ApiService, GetCharacterListParams } from '../../services/api.service';
-import { CharacterI, CharacterListI } from 'src/app/types/people-type';
+import { CharacterI, CharacterListI } from 'src/app/types/character-type';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { merge, of, Subject, Subscription, Observable, pipe } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         tap(() => {
           this.loading = false;
           this._snackBar
-            .open('There has ben a disturbance in the Force.', 'Use the force!')
+            .open('There has ben a disturbance in the Force.', 'Use the Force!')
             .afterDismissed()
             .pipe(take(1))
             .subscribe(() => { this.subscribeToData(); });
