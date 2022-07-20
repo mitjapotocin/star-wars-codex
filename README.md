@@ -13,5 +13,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Make sure, you have dev server running on localhost:4200 (`ng serve`) or change target url in `cypress/constants/constants.ts` .
+
 To open cypress UI run `npm run cy:open`
+
 To run e2e tests in command line run `npm run cy:run`
