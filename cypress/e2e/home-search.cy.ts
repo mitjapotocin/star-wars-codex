@@ -15,7 +15,7 @@ describe('Home page search', () => {
 
     // Mage sure result is on the list and is the only one
     cy
-      .get('.character-list ', { timeout: 15000 })
+      .get('.character-list', { timeout: 15000 })
       .contains('Luke Skywalker')
       .should('have.length', 1);
   })
@@ -37,7 +37,7 @@ describe('Home page search', () => {
     
     // Query should be empty
     cy
-    .get('.list-header input')
+      .get('.list-header input')
       .should('have.value', '');
 
     // List should be be full again
