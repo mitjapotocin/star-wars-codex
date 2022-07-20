@@ -1,5 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CharacterListComponent } from './character-list.component';
+import { UserPreferencesService } from '../../../services/user-preferences.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+
+class UserPreferencesServiceStub { 
+  getFavorites() { return []; }
+}
+class EmptyStub { }
+
+@NgModule()
+class BrowserAnimationsModuleStub {}
 
 describe('CharacterListComponent', () => {
   let component: CharacterListComponent;
@@ -7,7 +18,11 @@ describe('CharacterListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CharacterListComponent ]
+      declarations: [CharacterListComponent],
+      providers: [
+        { provide: UserPreferencesService, useClass: UserPreferencesServiceStub }
+      ],
+      imports: [BrowserAnimationsModule]
     })
     .compileComponents();
 
