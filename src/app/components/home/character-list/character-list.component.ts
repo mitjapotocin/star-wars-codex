@@ -13,26 +13,26 @@ import { UserPreferencesService } from 'src/app/services/user-preferences.servic
 export class CharacterListComponent {
   @Input() characters: CharacterI[] = [];
   @Input() loading: boolean = false;
-  
+
   favorites: any[] = [];
 
   constructor(
     private _userPreferencesService: UserPreferencesService
   ) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.favorites = this._userPreferencesService.getFavorites();
   }
 
-  isFavorite(character: CharacterI): boolean { 
-    return this.favorites.includes(character.name);
+  isFavorite({ name }: CharacterI): boolean {
+    return this.favorites.includes(name);
   }
 
   toggleFavorite(character: CharacterI) {
     this.favorites = this.isFavorite(character)
       ? this.favorites.filter(c => c !== character.name)
       : [...this.favorites, character.name];
-    
+
     this._userPreferencesService.setFavorites(this.favorites);
   }
 }

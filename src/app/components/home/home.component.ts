@@ -93,7 +93,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.getStateFromQueryParams()
     )
       .pipe(
-        tap((params: GetCharacterListParams) => { this.setStateBeforeFetch(params) }),
+        tap(() => { this.setStateBeforeFetch() }),
         switchMap((params: GetCharacterListParams) => forkJoin([
           this._apiService.getCharacterList(params),
           of(params)
@@ -129,12 +129,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this._changeDetectorRef.detectChanges();
   }
 
-  private setStateBeforeFetch({ page }: GetCharacterListParams) {
+  private setStateBeforeFetch() {
     this.loading = true;
     this.characters = [];
     this._changeDetectorRef.detectChanges();
   }
-
 
   protected routerEvents(): Observable<GetCharacterListParams> {
     return this._router.events

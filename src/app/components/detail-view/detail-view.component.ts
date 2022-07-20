@@ -33,7 +33,7 @@ export class DetailViewComponent implements OnInit {
   isFavorite?: boolean;
   loading: string | false = false;
   private favorites: string[] = [];
-  
+
   constructor(
     private _location: Location,
     private _route: ActivatedRoute,
@@ -45,10 +45,10 @@ export class DetailViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getCharacter();
     this.getFavorites();
+    this.getCharacter();
   }
-  
+
   hasProp(prop: string, object: object = (this.character as object)): boolean {
     return !!(object && typeof object === 'object')
       ? (object as any)[prop]
@@ -59,7 +59,7 @@ export class DetailViewComponent implements OnInit {
     this.favorites = this.isFavorite
       ? this.favorites.filter(c => c !== this.character.name)
       : [...this.favorites, this.character.name];
-    
+
     this.isFavorite = !this.isFavorite;
     this._userPreferencesService.setFavorites(this.favorites);
   }
@@ -81,7 +81,7 @@ export class DetailViewComponent implements OnInit {
       .pipe(
         take(1),
         mergeMap((isValid: boolean) => isValid ? of(state) : this.fetchCharacter()),
-        tap((character: CharacterI) => { this.setCharacterAndLoadingState(character); }),
+        tap((character: CharacterI) => { this.setCharacterAndState(character); }),
         mergeMap((character: CharacterI) => this.fetchFilmsAndHomeWorld(character)),
         tap(() => { this.afterDataRetrieved(); }),
         catchError(() => this.handleError())
@@ -90,17 +90,17 @@ export class DetailViewComponent implements OnInit {
   }
 
 
-  private setCharacterAndLoadingState(character: CharacterI) {
+  private setCharacterAndState(character: CharacterI) {
     this.character = character;
+    this.isFavorite = this.favorites.includes(this.character.name)
+
     this.loading = 'Fetching homeworld and films ...';
+
     this._changeDetectorRef.detectChanges();
   }
 
   private afterDataRetrieved() {
     this.loading = false;
-    if (this.character) {
-      this.isFavorite = this.favorites.includes(this.character.name)
-    }
 
     this._changeDetectorRef.detectChanges();
   }
@@ -114,9 +114,9 @@ export class DetailViewComponent implements OnInit {
             .open('There has ben a disturbance in the Force.', 'Go home')
             .afterDismissed()
             .pipe(take(1))
-            .subscribe(() => { 
+            .subscribe(() => {
               this._router.navigate(['/']);
-             });
+            });
         }),
       );
   }

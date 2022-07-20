@@ -7,7 +7,7 @@ const StorageKeyPrefix = 'sw-codex';
 export class StorageService {
 
   getParsedItem(key: StorageKeys): any {
-    let _key = this.keyWithPrefix(key);
+    let _key = this.getKeyWithPrefix(key);
     let value = localStorage.getItem(_key);
 
     if (!value) {
@@ -17,11 +17,11 @@ export class StorageService {
   }
 
   setStringifiedItem(key: StorageKeys, value: any) {
-    let _key = this.keyWithPrefix(key);
+    let _key = this.getKeyWithPrefix(key);
     localStorage.setItem(_key, JSON.stringify(value));
   }
 
-  private keyWithPrefix(string: StorageKeys): string {
+  private getKeyWithPrefix(string: StorageKeys): string {
     return `${StorageKeyPrefix}_${string}`;
   }
 }

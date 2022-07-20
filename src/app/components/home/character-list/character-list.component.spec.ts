@@ -2,15 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CharacterListComponent } from './character-list.component';
 import { UserPreferencesService } from '../../../services/user-preferences.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 
 class UserPreferencesServiceStub { 
   getFavorites() { return []; }
+  setFavorites() { }
 }
-class EmptyStub { }
-
-@NgModule()
-class BrowserAnimationsModuleStub {}
 
 describe('CharacterListComponent', () => {
   let component: CharacterListComponent;
@@ -33,5 +29,19 @@ describe('CharacterListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  
+  it('toggleFavorites should remove character if character is in favorites', () => {
+    component.favorites = ['luke', 'obi'];
+
+    component.toggleFavorite({ name: 'luke' } as any);
+    expect(component.favorites).toEqual(['obi']);
+  });
+
+  it('toggleFavorites should add character if character is not in favorites', () => {
+    component.favorites = ['luke', 'obi'];
+
+    component.toggleFavorite({ name: 'sara' } as any);
+    expect(component.favorites).toEqual(['luke', 'obi', 'sara']);
   });
 });
