@@ -1,5 +1,8 @@
+@import '~src/scss/mixins';
+
 nav {
   background: #000;
+  color: #fff;
 }
 
 .nav-container {
@@ -14,8 +17,39 @@ nav {
 h1 {
   font-size: 28px;
   user-select: none;
+  color: var(--yellow);
+  &.mobile {
+    display: none;
+  }
+
+  @include for-mobile {
+    font-size: 22px;
+
+    &.mobile {
+      display: block;
+    }
+    &.desktop {
+      display: none;
+    }
+
+  }
 }
 
-a {
+.home-link {
   text-decoration: none;
+  flex-shrink: 0;
+}
+
+.toggle {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 11px;
+    margin-right: 6px;
+
+    @include for-mobile {
+      display: none;
+    }
+  }
 }

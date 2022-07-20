@@ -1,6 +1,9 @@
 <div class="app">
 
-  <app-nav></app-nav>
+  <app-nav 
+    [isDarkTheme]="isDarkTheme"
+    (toggleTheme)="toggleTheme()">
+  </app-nav>
   
   <div class="outlet-container">
     <router-outlet></router-outlet>

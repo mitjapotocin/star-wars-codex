@@ -1,7 +1,19 @@
 <nav>
   <div class="nav-container">
-    <a [routerLink]="['/']">
-      <h1>Star wars codex</h1>
+    <a class="home-link" [routerLink]="['/']">
+      <h1 class="desktop">Star wars codex</h1>
+      <h1 class="mobile">SW codex</h1>
     </a>
+
+    <div class="toggle">
+      <span> {{ isDarkTheme ? 'Back to the light side' : 'Join me in to the dark side'}}</span>
+      <mat-slide-toggle
+          class="example-margin"
+          [(ngModel)]="isDarkTheme"
+          (toggleChange)="onToggle()"
+          [color]="'warn'">
+      </mat-slide-toggle>
+    </div>
+
   </div>
 </nav>

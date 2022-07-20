@@ -1,6 +1,13 @@
+@import '~src/scss/mixins';
+
+
 .outlet-container {
   padding: 72px 30px;
   flex: 1;
+  
+  @include for-mobile {
+    padding: 48px 30px;
+  }
 }
 
 .app {

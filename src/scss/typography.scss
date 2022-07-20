@@ -7,14 +7,17 @@
 
 h1, h2, h3 {
   font-family: StarJedi, arial, verdana, sans-serif;
-  color: var(--yellow);
+  color: var(--title-color);
 }
 
 h2 {
   font-size: 28px;
-  color: #000;
   display: inline-block;
   margin-bottom: 56px;
+  
+  @include for-mobile {
+    margin-bottom: 32px;
+  }
 }
 
 html {

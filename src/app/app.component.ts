@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,20 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  title = 'star-wars-codex';
+export class AppComponent implements OnInit {
+  isDarkTheme: boolean = false;
+
+  constructor(
+    private _themeService: ThemeService
+  ) { }
+  
+  ngOnInit() {
+    let theme = this._themeService.setPreferredTheme();
+    this.isDarkTheme = theme === 'dark';
+  }
+
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+    this._themeService.toggleTheme();
+  }
 }

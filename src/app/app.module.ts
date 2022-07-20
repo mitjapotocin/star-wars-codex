@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { DetailViewModule } from './components/detail-view/detail-view.module';
 import { HomeModule } from './components/home/home.module';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HomeModule } from './components/home/home.module';
     HttpClientModule,
     BrowserModule,
     HomeModule,
+    MatSlideToggleModule,
     FormsModule,
     AppRoutingModule
   ],
