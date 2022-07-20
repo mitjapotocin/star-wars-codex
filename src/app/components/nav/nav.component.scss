@@ -1,13 +1,14 @@
 @import '~src/scss/mixins';
 
 $text-color: #e3e3e3;
+$background: #000;
 
 nav {
-  background: #000;
+  background: $background;
 }
 
 .nav-container {
-  height: 60px;
+  height: 68px;
   padding: 0 30px;
   max-width: 1920px;
   margin: 0 auto;

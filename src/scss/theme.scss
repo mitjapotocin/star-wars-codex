@@ -1,13 +1,13 @@
 :root:not([theme=dark]) {
   --yellow : #FFE81F;
-  --background-primary: #ffffff;
-  --color-primary: #000000;
+  --background-primary: #f7f7f7;;
+  --color-primary: #1e1e1e;
   --title-color: #000000;
 }
 :root[theme=dark] {
   --yellow : #FFE81F;
-  --background-primary: #1e1e1e;
-  --color-primary: #ffffff;
+  --background-primary: #181818;
+  --color-primary: #ececec;
   --title-color: #e3e3e3;
 }
 
