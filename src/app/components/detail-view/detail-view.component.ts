@@ -32,7 +32,7 @@ export class DetailViewComponent implements OnInit {
   films: string = '';
   homeworld: string = '';
   isFavorite?: boolean;
-  loading: boolean = false;
+  loading: string | false = false;
   private favorites: string[] = [];
   
   constructor(
@@ -55,7 +55,7 @@ export class DetailViewComponent implements OnInit {
   }
 
   private getCharacter() {
-    this.loading = true;
+    this.loading = 'Fetching character ...';
 
     let state = this._location.getState() as CharacterI;
 
@@ -63,7 +63,7 @@ export class DetailViewComponent implements OnInit {
       .pipe(
         take(1),
         mergeMap((hasData: boolean) => hasData ? of(state) : this.fetchCharacter()),
-        tap((character: CharacterI) => { this.character = character; }),
+        tap((character: CharacterI) => { this.setCharacterAndLoadingState(character); }),
         mergeMap((character: CharacterI) => this.fetchFilmsAndHomeWorld(character)),
         tap(() => { this.afterDataRetrieved(); }),
         catchError(() => this.handleError())
@@ -71,6 +71,12 @@ export class DetailViewComponent implements OnInit {
       .subscribe();
   }
 
+
+  private setCharacterAndLoadingState(character: CharacterI) {
+    this.character = character;
+    this.loading = 'Fetching homeworld and films ...';
+    this._changeDetectorRef.detectChanges();
+  }
 
   private afterDataRetrieved() {
     this.loading = false;

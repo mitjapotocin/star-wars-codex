@@ -14,6 +14,7 @@ import { HomeComponent } from './home.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoaderModule } from '../loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   ],
   imports: [
     MatCardModule,
-    MatProgressSpinnerModule,
+    LoaderModule,
     MatInputModule,
     BrowserAnimationsModule,
     MatButtonModule,

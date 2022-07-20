@@ -14,6 +14,8 @@
 // hue. Available color palettes: https://material.io/design/color/
 $star-wars-codex-primary: mat.define-palette(mat.$red-palette);
 $star-wars-codex-accent: mat.define-palette(mat.$red-palette, A200, A100, A400);
+$star-wars-codex-primary-dark: mat.define-palette(mat.$yellow-palette);
+$star-wars-codex-accent-dark: mat.define-palette(mat.$yellow-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $star-wars-codex-warn: mat.define-palette(mat.$red-palette);
@@ -29,8 +31,8 @@ $star-wars-codex-theme: mat.define-light-theme((
 ));
 $star-wars-codex-theme-dark: mat.define-dark-theme((
   color: (
-    primary: $star-wars-codex-primary,
-    accent: $star-wars-codex-accent,
+    primary: $star-wars-codex-primary-dark,
+    accent: $star-wars-codex-accent-dark,
     warn: $star-wars-codex-warn,
   )
 ));
@@ -51,4 +53,8 @@ $star-wars-codex-theme-dark: mat.define-dark-theme((
 
 :root:not([theme=dark]) .mat-slide-toggle-bar {
   background-color: #a2a2a2;
+}
+
+.mat-card {
+  font-family: inherit;
 }

@@ -1,7 +1,7 @@
 <div class="main-wrapper">
-  <ng-template [ngIf]="character && !loading">
+  <ng-template [ngIf]="character">
 
-    <h2>
+    <h2 @listAnimationEnter>
       <span>
         {{ character?.name?.toLowerCase() }}
       </span>
@@ -22,12 +22,16 @@
         </app-detail>
       </ng-template>
 
-      <app-detail *ngIf="homeworld" 
+      <app-detail 
+        *ngIf="homeworld"
+        @listAnimationEnter
         [description]="'homeworld'"
         [value]="homeworld">
       </app-detail>
 
-      <app-detail *ngIf="films" 
+      <app-detail 
+        *ngIf="films"
+        @listAnimationEnter
         [description]="'films'"
         [value]="films">
       </app-detail>
@@ -35,9 +39,9 @@
     </div>
   </ng-template>
   
-  <mat-spinner 
-    *ngIf="loading"
-    [diameter]="42">
-  </mat-spinner>
+  <app-loader
+    *ngIf="loading" 
+    [value]="loading">
+  </app-loader>
 
 </div>

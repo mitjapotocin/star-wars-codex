@@ -1,0 +1,16 @@
+.loader {
+  display: flex;
+  
+  .loader-wrapper {
+    margin: 24px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .value {
+    opacity: .7;
+    font-size: 13px;
+  }
+}

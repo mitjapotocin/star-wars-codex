@@ -1,8 +1,9 @@
 @import '~src/scss/mixins';
 
+$text-color: #e3e3e3;
+
 nav {
   background: #000;
-  color: #fff;
 }
 
 .nav-container {
@@ -12,19 +13,22 @@ nav {
   margin: 0 auto;
   display: flex;
   align-items: center;
+
+  @include for-mobile {
+    padding: 0 15px;
+  }
 }
 
 h1 {
   font-size: 28px;
   user-select: none;
   color: var(--yellow);
+
   &.mobile {
     display: none;
   }
 
   @include for-mobile {
-    font-size: 22px;
-
     &.mobile {
       display: block;
     }
@@ -44,9 +48,11 @@ h1 {
   margin-left: auto;
   display: flex;
   align-items: center;
+  
   span {
-    font-size: 11px;
-    margin-right: 6px;
+    font-size: 12px;
+    margin-right: 10px;
+    color: $text-color;
 
     @include for-mobile {
       display: none;

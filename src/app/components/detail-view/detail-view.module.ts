@@ -7,6 +7,7 @@ import { DetailViewComponent } from './detail-view.component';
 import { DetailComponent } from './detail/detail.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { LoaderModule } from '../loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatIconModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LoaderModule
   ],
   exports: [],
   providers: [],
